@@ -1,0 +1,92 @@
+1   TODO:   separate it into a generator and a printer
+    UPDATE: separated and retriever definitely works
+
+
+2   TODO:   further narrow it down by whether it is obtainable in that generation
+    UPDATE: just changed it so it only retrieves Sandslash, because the filtering by
+            not "Trade" limits it to no versions have "Trade" and it's super broken.
+    TODO:   fix the location obtainer because it's ultra broken
+    UPDATE: <h4><span class="mw-headline" id="In_side_games">In side games</span></h4>
+            seems like it could work for Sandslash, but not for Pokes with no side games,
+            so would need to find an alternate
+            This is instead of ending looking for tds at a </table>
+    TODO:   but also we're definitely not getting all the things anyway; we get Trade
+            and then 10, 35, 40, etc. which look like power or pp or something for movesets.
+    UPDATE: we get to the correct gen for game locations, but it all craps out soon afterward
+            because we get into state check_td and then we find and end table tag way too
+            soon.
+    TODO:   use another state for this, and look for an h4 maybe for side games?
+            Actually, first check other Pokemon that aren't available in side games
+    UPDATE: still good; base stats is h4 as well anyway.
+    UPDATE: oh, check_td was ONLY used to find locations. I ended up renaming it and
+            looking for h4 instead.
+    TODO:   see how this goes
+    UPDATE: WAY better - ended up with ['Trade', 'Evolve', 'Sandshrew', 'Trade', 'Evolve', 'Sandshrew']
+    UPDATE: and it came up correct!
+    TODO:   run the whole thing again and see what we end up with being available
+    UPDATE: got to Charizard, but Charizard acted weird and came up with a BUNCH of junk
+            in its locations.
+    TODO:   test using Charizard for a minute
+    UPDATE: looks like it did the locations twice?
+    TODO:   Let's GO Pikachu and Let's go Eevee count as generation 7, and it's available
+            on like every route apparently. Need to take these out.
+    UPDATE: done! It's cut out now.
+    TODO:   go back to running everything and watch the log to see if anything is obviously weird
+    UPDATE: looks pretty good, until I saw Growlithe counted
+            things that only show up with Pokemon Bank are definitely NOT in the list, and
+            some notable Pokemon I know are in this game are all coming up good.
+    TODO:   Growlithe came up as a last stager
+    UPDATE: Mankey, Psyduck too. They have "evolves" as a link and "into" as text, so perhaps
+            that is another difference
+    UPDATE: added the link version; it wasn't looked for. So far so good; keep watching for others.
+    UPDATE: great; it's definitely working. Let's let this thing run to completion.
+    TODO:   it exploded right after Zapdos? And didn't count Articuno as a last stager,
+            (but did count Snorlax)
+    UPDATE: "It is not known to evolve into or from any other Pokémon."
+            is on Articuno's page, but that's not "evolves into"
+    UPDATE: oh DUH; I skip legendars on purposes hahaha
+    TODO:   okay, back to the error
+            urllib2.HTTPError: HTTP Error 503: Backend fetch failed
+            which honestly just sounds like a dumb issue
+    UPDATE: added in error handling and timeout loop, but it didn't happen again as far as I can tell
+            and it's plugging along into gen 3 already
+    TODO:   again, keep watch and see what happens
+
+
+2.1 TODO:   check on Electivire specifically. Magmortar showed up but not him, which
+            is kinda weird.
+    UPDATE: yeah, Electabuzz is obtainable and Electivire says evolve Electabuzz,
+            so let's check on this one.
+    UPDATE: Trophy information section contains "Evolves into" so I need to be smarter about
+            finding the evolution section.
+    TODO:   I guess it has to be in the parser now, which is a bummer. It's one of the first <p>
+            that ever happens, so that's cool.
+    UPDATE: using just <p>, I get an empty one starting with "It" which is the right one;
+            but it doesn't get the rest of the content outside the <a> for some odd reason.
+    UPDATE: I wasn't restoring current_tag to '' when an end tag was encountered. Added
+            a conditional to do this in case I was relying on it.
+    UPDATE: ah, I need to basically parse this puppy out so ALL the stuff inside the paragraph
+            gets mashed together into a single string.
+    TODO:   after getting the Types but before looking for game locations, this is when I need
+            to be saving the text of all paragraphs. Should end when we see div id="toc" for table of contents.
+    UPDATE: done with first attempt
+    UPDATE: works!
+    TODO:   re-run and see if anyone doesn't show up that we expect.
+
+
+
+    TODO:   Samurott also showed up as available
+    UPDATE: indeed he is! Island scan.
+
+
+    TODO:   Simisage and friends didn't show up as being checked at all
+    UPDATE: there's nothing obvious about Simisage.
+    TODO:   try it again now that I changed some stuff
+    UPDATE: works now! He's not available anyway.
+
+
+3   TODO:   would also be nice to have Alolan forms and maybe alternate forms
+            like Oricorio count as separate Pokemon. However, form changes
+            like Aegislash need to not count twice because they happen automatically
+
+

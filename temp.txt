@@ -1,0 +1,33 @@
+Kaitlyn: 
+Skipping Relicanth because of Water
+Skipping Timburr because of Fighting
+Skipping Tentacool because of Water
+1.	Cottonee: Grass,Fairy
+2.	Feebas: Water
+3.	Stufful: Normal,Fighting
+4.	Wingull: Water,Flying
+5.	Pichu: Electric
+6.	Fomantis: Grass
+7.	Bagon: Dragon
+8.	Crabrawler: Fighting
+9.	Venipede: Bug,Poison
+10.	Tepig: Fire
+11.	Absol: Dark
+12.	Sandygast: Ghost,Ground
+David: 
+Skipping Poliwag because of Water
+Skipping Oranguru because of Normal
+Skipping Lillipup because of Normal
+Skipping Aerodactyl because of Flying
+1.	Litwick: Ghost,Fire
+2.	Feebas: Water
+3.	Oshawott: Water
+4.	Lillipup: Normal
+5.	Tynamo: Electric
+6.	Starly: Normal,Flying
+7.	Honedge: Steel,Ghost
+8.	Klink: Steel
+9.	Cubone: Ground
+10.	Swinub: Ice,Ground
+11.	Delibird: Ice,Flying
+12.	Magby: Fire
